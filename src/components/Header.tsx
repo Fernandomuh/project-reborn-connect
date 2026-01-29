@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import superteamLogo from "@/assets/superteam-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,20 +27,14 @@ const Header = () => {
       <div className="glass-card mx-4 mt-4 md:mx-8">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
+            <img 
+              src={superteamLogo} 
+              alt="Superteam Brasil" 
+              className="h-10 w-auto"
+            />
             <span className="font-display text-xl font-bold bg-gradient-to-r from-primary via-purple-500 to-primary bg-clip-text text-transparent animate-pulse-glow">
               Superteam Brasil
             </span>
-            <div className="relative w-8 h-6 flex items-center justify-center">
-              <div className="absolute inset-0 bg-brazil-green rounded-[2px] animate-pulse" />
-              <div
-                className="absolute inset-[3px] bg-brazil-yellow animate-pulse"
-                style={{ clipPath: 'polygon(50% 10%, 90% 50%, 50% 90%, 10% 50%)', animationDelay: '0.3s' }}
-              />
-              <div
-                className="absolute w-2.5 h-2.5 rounded-full bg-brazil-blue animate-pulse shadow-[0_0_6px_rgba(0,102,204,0.6)]"
-                style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)', animationDelay: '0.6s' }}
-              />
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
