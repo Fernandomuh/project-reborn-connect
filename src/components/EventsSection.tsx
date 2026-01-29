@@ -33,6 +33,12 @@ const pastHighlights = [
   "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=200&h=200&fit=crop",
   "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=200&h=200&fit=crop",
   "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=200&h=200&fit=crop",
+  "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=200&h=200&fit=crop",
+  "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=200&h=200&fit=crop",
+  "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=200&h=200&fit=crop",
+  "https://images.unsplash.com/photo-1528901166007-3784c7dd3653?w=200&h=200&fit=crop",
+  "https://images.unsplash.com/photo-1559223607-b4d0555ae227?w=200&h=200&fit=crop",
+  "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=200&h=200&fit=crop",
 ];
 
 const EventsSection = () => {
