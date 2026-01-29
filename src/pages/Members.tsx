@@ -52,10 +52,14 @@ const Members = () => {
 
   const filteredMembers = allMembers
     .filter((member) => {
-      const matchesSearch =
-        member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        member.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        member.company.toLowerCase().includes(searchQuery.toLowerCase());
+      const searchLower = searchQuery.toLowerCase().trim();
+      
+      // Check if search matches name, role, company, or any skill
+      const matchesSearch = searchLower === "" ||
+        member.name.toLowerCase().includes(searchLower) ||
+        member.role.toLowerCase().includes(searchLower) ||
+        member.company.toLowerCase().includes(searchLower) ||
+        member.skills.some(skill => skill.toLowerCase().includes(searchLower));
 
       const matchesFilter =
         activeFilter === "Todos" ||
@@ -88,7 +92,7 @@ const Members = () => {
           {/* Header */}
           <div className="max-w-3xl mb-12">
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-              Nossos <span className="gradient-text">Membros</span>
+              <span className="gradient-text">Nossos</span> <span className="gradient-text">Membros</span>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed">
               Conheça os construtores que fazem parte da Superteam Brasil.
@@ -103,7 +107,7 @@ const Members = () => {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Buscar membros..."
+                placeholder="Buscar membros por nome, cargo, empresa ou habilidade..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
@@ -121,9 +125,11 @@ const Members = () => {
                     onClick={() => setActiveFilter(skill)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       isActive
-                        ? colors
-                          ? `${colors.bg} ${colors.text} ring-1 ${colors.ring}`
-                          : "bg-primary text-primary-foreground"
+                        ? skill === "Todos"
+                          ? "bg-primary text-primary-foreground"
+                          : colors
+                            ? `${colors.bg} ${colors.text} ring-1 ${colors.ring}`
+                            : "bg-primary text-primary-foreground"
                         : colors
                           ? `${colors.bg} ${colors.text} opacity-60 hover:opacity-100`
                           : "bg-secondary text-secondary-foreground hover:bg-primary/20"

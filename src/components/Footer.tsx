@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { NiemeyerCurve, BrazilianDivider } from "./BrazilianPatterns";
+import superteamLogo from "@/assets/superteam-logo.png";
 
 const socialLinks = [
   {
@@ -67,6 +68,11 @@ const Footer = () => {
           {/* Logo & Description */}
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-4">
+              <img 
+                src={superteamLogo} 
+                alt="Superteam Brasil" 
+                className="h-14 w-auto"
+              />
               <span className="font-display text-xl font-bold bg-gradient-to-r from-primary via-purple-500 to-primary bg-clip-text text-transparent">
                 Superteam Brasil
               </span>
