@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
-import AnimatedFlag from "./AnimatedFlag";
+import logoVerde from "@/assets/logo-verde.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,11 +26,12 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="glass-card mx-4 mt-4 md:mx-8">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <AnimatedFlag />
-            <span className="font-display text-xl font-bold bg-gradient-to-r from-primary via-purple-500 to-primary bg-clip-text text-transparent animate-pulse-glow">
-              Superteam Brasil
-            </span>
+          <Link to="/" className="flex items-center group">
+            <img 
+              src={logoVerde} 
+              alt="Superteam Brasil" 
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
