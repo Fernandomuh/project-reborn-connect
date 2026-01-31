@@ -119,20 +119,20 @@ const Members = () => {
               {skillFilters.map((skill) => {
                 const colors = skillColors[skill];
                 const isActive = activeFilter === skill;
+                const isTodos = skill === "Todos";
+                
                 return (
                   <button
                     key={skill}
                     onClick={() => setActiveFilter(skill)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all cursor-pointer ${
                       isActive
-                        ? skill === "Todos"
+                        ? isTodos
                           ? "bg-primary text-primary-foreground"
-                          : colors
-                            ? `${colors.bg} ${colors.text} ring-1 ${colors.ring}`
-                            : "bg-primary text-primary-foreground"
-                        : colors
-                          ? `${colors.bg} ${colors.text} opacity-60 hover:opacity-100`
-                          : "bg-secondary text-secondary-foreground hover:bg-primary/20"
+                          : `${colors?.bg} ${colors?.text} ring-1 ${colors?.ring}`
+                        : isTodos
+                          ? "bg-secondary text-secondary-foreground hover:bg-primary/20"
+                          : `${colors?.bg} ${colors?.text} opacity-60 hover:opacity-100`
                     }`}
                   >
                     {skill}
