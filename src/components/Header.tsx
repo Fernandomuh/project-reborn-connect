@@ -30,7 +30,7 @@ const Header = () => {
             <img 
               src={logoVerde} 
               alt="Superteam Brasil" 
-              className="h-10 w-40"
+              className="h-12 w-50"
             />
           </Link>
 
