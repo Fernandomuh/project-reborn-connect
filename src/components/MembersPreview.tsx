@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { ArrowRight, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
@@ -66,6 +67,15 @@ const featuredMembers = [
 ];
 
 const MembersPreview = () => {
+  const [activeFilter, setActiveFilter] = useState<(typeof skillFilters)[number]>(
+    "Todos"
+  );
+
+  const filteredMembers = useMemo(() => {
+    if (activeFilter === "Todos") return featuredMembers;
+    return featuredMembers.filter((m) => m.skill === activeFilter);
+  }, [activeFilter]);
+
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Decorative Background */}
@@ -109,26 +119,32 @@ const MembersPreview = () => {
         <div className="flex flex-wrap gap-2 mb-8">
           {skillFilters.map((skill) => {
             const colors = skillColors[skill];
+            const isTodos = skill === "Todos";
+            const isActive = activeFilter === skill;
             return (
-              <span
+              <button
                 key={skill}
-                className={`px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-all ${
-                  skill === "Todos"
-                    ? "bg-primary text-primary-foreground"
-                    : colors
-                      ? `${colors.bg} ${colors.text} opacity-60 hover:opacity-100`
-                      : "bg-secondary text-secondary-foreground hover:bg-primary/20"
+                type="button"
+                onClick={() => setActiveFilter(skill)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  isActive
+                    ? isTodos
+                      ? "bg-primary text-primary-foreground"
+                      : `${colors?.bg} ${colors?.text} ring-1 ring-border/50`
+                    : isTodos
+                      ? "bg-secondary text-secondary-foreground hover:bg-primary/20"
+                      : `${colors?.bg} ${colors?.text} opacity-60 hover:opacity-100`
                 }`}
               >
                 {skill}
-              </span>
+              </button>
             );
           })}
         </div>
 
         {/* Members Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredMembers.map((member) => {
+          {filteredMembers.map((member) => {
             const colors = skillColors[member.skill] || { bg: "bg-secondary", text: "text-secondary-foreground" };
 
             return (
@@ -174,6 +190,14 @@ const MembersPreview = () => {
             );
           })}
         </div>
+
+        {filteredMembers.length === 0 && (
+          <div className="mt-10 text-center">
+            <p className="text-muted-foreground">
+              Nenhum membro encontrado para esse filtro.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
